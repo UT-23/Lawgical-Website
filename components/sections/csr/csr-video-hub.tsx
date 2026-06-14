@@ -2,38 +2,39 @@
 import { VideoCard } from '@/components/video/video-card'
 import { SectionLabel } from '@/components/ui/section-label'
 import { Reveal } from '@/components/ui/reveal'
+import { videoUrl } from '@/lib/video'
 
 const CAMPAIGNS = [
   {
-    src: '/videos/csr/breast-cancer-awareness.mov',
+    src: videoUrl('/videos/csr/breast-cancer-awareness.mov'),
     title: 'Breast Cancer Awareness Campaign',
     category: 'Health & Wellness',
     desc: 'Observing global health initiatives through local corporate wellness and educational briefings.',
     aspect: '16/9' as const,
   },
   {
-    src: '/videos/csr/education-day.mp4',
+    src: videoUrl('/videos/csr/education-day.mp4'),
     title: 'International Day of Education',
     category: 'Education & Youth',
     desc: 'Supporting regional access to literacy, corporate training modules, and youth legal seminars.',
     aspect: '16/9' as const,
   },
   {
-    src: '/videos/csr/stress-awareness-day.mp4',
+    src: videoUrl('/videos/csr/stress-awareness-day.mp4'),
     title: 'International Stress Awareness Day',
     category: 'Mental Wellbeing',
     desc: 'Promoting healthy work practices, mental resilience, and balanced legal workspaces across the region.',
     aspect: '16/9' as const,
   },
   {
-    src: '/videos/csr/un-post.mov',
+    src: videoUrl('/videos/csr/un-post.mov'),
     title: 'United Nations Social Advocacy',
     category: 'Global Citizenship',
     desc: 'Supporting international human rights, trade equity, and the UN Sustainable Development Goals.',
     aspect: '16/9' as const,
   },
   {
-    src: '/videos/csr/world-gratitude-day.mov',
+    src: videoUrl('/videos/csr/world-gratitude-day.mov'),
     title: 'World Gratitude Day Initiatives',
     category: 'Community Support',
     desc: 'Spreading community appreciation, local worker support campaigns, and volunteer pro-bono setups.',

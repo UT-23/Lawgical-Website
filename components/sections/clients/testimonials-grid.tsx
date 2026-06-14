@@ -2,31 +2,32 @@
 import { VideoCard } from '@/components/video/video-card'
 import { SectionLabel } from '@/components/ui/section-label'
 import { Reveal } from '@/components/ui/reveal'
+import { videoUrl } from '@/lib/video'
 
 const TESTIMONIALS = [
   {
-    src: '/videos/clients/jalpa-testimonial.mp4',
+    src: videoUrl('/videos/clients/jalpa-testimonial.mp4'),
     title: 'Jalpa',
     desc: 'Managing Director',
     details: 'Feedback on Corporate Restructuring & Compliance Advisory',
     aspect: '9/16' as const,
   },
   {
-    src: '/videos/clients/mostafa-testimonial.mp4',
+    src: videoUrl('/videos/clients/mostafa-testimonial.mp4'),
     title: 'Mostafa',
     desc: 'Co-Founder & CEO',
     details: 'Review on Cross-Border Intellectual Property & Structuring',
     aspect: '9/16' as const,
   },
   {
-    src: '/videos/clients/shadhad-testimonial.mp4',
+    src: videoUrl('/videos/clients/shadhad-testimonial.mp4'),
     title: 'Shadhad',
     desc: 'Director of Developments',
     details: 'Advisory on High-Value Dispute Resolution & DIAC Arbitration',
     aspect: '9/16' as const,
   },
   {
-    src: '/videos/clients/srinivas-singh-testimonial.mp4',
+    src: videoUrl('/videos/clients/srinivas-singh-testimonial.mp4'),
     title: 'Srinivas Singh',
     desc: 'Executive Director',
     details: 'Consultation on UAE Corporate Entry & Joint Venture Setup',

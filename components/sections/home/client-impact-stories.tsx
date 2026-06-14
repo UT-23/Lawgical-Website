@@ -7,34 +7,35 @@ import { SectionLabel } from '@/components/ui/section-label'
 import { VideoCard } from '@/components/video/video-card'
 import { VideoReel } from '@/components/video/video-reel'
 import { useVideoModal } from '@/components/video/video-modal'
+import { videoUrl } from '@/lib/video'
 
 const FEATURED_REEL = {
-  src: '/videos/clients/collection-reel.mp4',
+  src: videoUrl('/videos/clients/collection-reel.mp4'),
   title: 'Advocacy in Action',
   description: 'A comprehensive collection of client perspectives across corporate structuring, cross-border dispute resolution, and litigation enforcement matters managed by Lawgical.',
 }
 
 const SUPPORTING_TESTIMONIALS = [
   {
-    src: '/videos/clients/jalpa-testimonial.mp4',
+    src: videoUrl('/videos/clients/jalpa-testimonial.mp4'),
     title: 'Jalpa',
     role: 'Managing Director',
     outcome: 'Corporate Restructuring & Compliance Advisory',
   },
   {
-    src: '/videos/clients/mostafa-testimonial.mp4',
+    src: videoUrl('/videos/clients/mostafa-testimonial.mp4'),
     title: 'Mostafa',
     role: 'Co-Founder & CEO',
     outcome: 'Cross-Border Intellectual Property & Structuring',
   },
   {
-    src: '/videos/clients/shadhad-testimonial.mp4',
+    src: videoUrl('/videos/clients/shadhad-testimonial.mp4'),
     title: 'Shadhad',
     role: 'Director of Developments',
     outcome: 'High-Value Dispute Resolution & DIAC Arbitration',
   },
   {
-    src: '/videos/clients/srinivas-singh-testimonial.mp4',
+    src: videoUrl('/videos/clients/srinivas-singh-testimonial.mp4'),
     title: 'Srinivas Singh',
     role: 'Executive Director',
     outcome: 'UAE Corporate Entry & Joint Venture Setup',

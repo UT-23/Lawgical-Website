@@ -2,6 +2,7 @@
 import { VideoReel } from '@/components/video/video-reel'
 import { SectionLabel } from '@/components/ui/section-label'
 import { Reveal } from '@/components/ui/reveal'
+import { videoUrl } from '@/lib/video'
 
 export function FeaturedReel() {
   return (
@@ -12,7 +13,7 @@ export function FeaturedReel() {
         <div className="grid gap-12 lg:grid-cols-[1fr_360px] lg:items-center">
           <Reveal variant="fromLeft" className="w-full">
             <VideoReel
-              src="/videos/clients/collection-reel.mp4"
+              src={videoUrl('/videos/clients/collection-reel.mp4')}
               className="w-full shadow-2xl overflow-hidden aspect-video"
             />
           </Reveal>
