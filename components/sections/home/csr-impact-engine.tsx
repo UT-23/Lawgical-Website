@@ -7,13 +7,14 @@ import { Reveal } from '@/components/ui/reveal'
 import { SectionLabel } from '@/components/ui/section-label'
 import { VideoCard } from '@/components/video/video-card'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
+import { videoUrl } from '@/lib/video'
 
 const CSR_VIDEOS = [
-  { src: '/videos/csr/un-post.mov', title: 'United Nations Compliance Partnership', category: 'Pro Bono', desc: 'Partnering with global entities to enforce regulatory frameworks and promote compliance standards.' },
-  { src: '/videos/csr/education-day.mp4', title: 'Youth Legal Education Program', category: 'Education', desc: 'Cultivating the next generation of legal talent by hosting interactive workshops and school visits.' },
-  { src: '/videos/csr/breast-cancer-awareness.mov', title: 'Healthcare Advocacy & Awareness', category: 'Community', desc: 'Sponsoring healthcare research campaigns and regional clinical outreach initiatives.' },
-  { src: '/videos/csr/stress-awareness-day.mp4', title: 'Stress & Mental Health Forum', category: 'Wellbeing', desc: 'Promoting work-life balance and mental health programs within the high-pressure professional sector.' },
-  { src: '/videos/csr/world-gratitude-day.mov', title: 'World Gratitude Day Outreach', category: 'Community', desc: 'Supporting local families and volunteers during community enhancement events.' },
+  { src: videoUrl('/videos/csr/un-post.mov'), title: 'United Nations Compliance Partnership', category: 'Pro Bono', desc: 'Partnering with global entities to enforce regulatory frameworks and promote compliance standards.' },
+  { src: videoUrl('/videos/csr/education-day.mp4'), title: 'Youth Legal Education Program', category: 'Education', desc: 'Cultivating the next generation of legal talent by hosting interactive workshops and school visits.' },
+  { src: videoUrl('/videos/csr/breast-cancer-awareness.mov'), title: 'Healthcare Advocacy & Awareness', category: 'Community', desc: 'Sponsoring healthcare research campaigns and regional clinical outreach initiatives.' },
+  { src: videoUrl('/videos/csr/stress-awareness-day.mp4'), title: 'Stress & Mental Health Forum', category: 'Wellbeing', desc: 'Promoting work-life balance and mental health programs within the high-pressure professional sector.' },
+  { src: videoUrl('/videos/csr/world-gratitude-day.mov'), title: 'World Gratitude Day Outreach', category: 'Community', desc: 'Supporting local families and volunteers during community enhancement events.' },
 ]
 
 const PILLARS = [
