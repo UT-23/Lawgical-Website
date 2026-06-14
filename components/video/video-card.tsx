@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { Play } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { useVideoModal } from './video-modal'
 import { DURATION, EASING } from '@/lib/motion'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
+import { useVideoAutoplay } from '@/lib/hooks/use-video-autoplay'
 
 interface VideoCardProps {
   src: string
@@ -24,11 +25,11 @@ export function VideoCard({
   title,
   description,
   aspectRatio = '9/16',
-  hoverPreview = true,
   className,
 }: VideoCardProps) {
   const { openModal } = useVideoModal()
-  const videoRef = useRef<HTMLVideoElement>(null)
+  // Autoplays (muted) whenever the card scrolls into view, pauses when it leaves.
+  const { ref: videoRef, isPlaying } = useVideoAutoplay()
   const [hovered, setHovered] = useState(false)
   const reduced = useReducedMotion()
 
@@ -38,28 +39,13 @@ export function VideoCard({
     '4/3': 'pb-[75%]',
   }
 
-  const handleHoverStart = () => {
-    if (reduced || !hoverPreview) return
-    setHovered(true)
-    videoRef.current?.play().catch(() => {})
-  }
-
-  const handleHoverEnd = () => {
-    if (reduced || !hoverPreview) return
-    setHovered(false)
-    if (videoRef.current) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
-    }
-  }
-
   const handleClick = () => openModal(src, title)
 
   return (
     <motion.button
       onClick={handleClick}
-      onHoverStart={handleHoverStart}
-      onHoverEnd={handleHoverEnd}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
       data-cursor="video"
       className={cn(
         'group relative block w-full overflow-hidden rounded-lg bg-foreground/5 text-left',
@@ -70,44 +56,39 @@ export function VideoCard({
       aria-label={`Play ${title}`}
     >
       <div className={`relative w-full ${paddingMap[aspectRatio]}`}>
-        {/* Poster image */}
+        {/* Poster image — fades out once the video starts playing */}
         {poster && (
           <Image
             src={poster}
             alt={title}
             fill
             className={cn(
-              'object-cover transition-opacity duration-300',
-              hovered && !reduced ? 'opacity-0' : 'opacity-100'
+              'object-cover transition-opacity duration-500',
+              isPlaying && !reduced ? 'opacity-0' : 'opacity-100'
             )}
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         )}
 
-        {/* Video preview */}
-        {hoverPreview && (
-          <video
-            ref={videoRef}
-            src={src}
-            muted
-            loop
-            playsInline
-            preload="none"
-            className={cn(
-              'absolute inset-0 h-full w-full object-cover transition-opacity duration-300',
-              hovered && !reduced ? 'opacity-100' : 'opacity-0'
-            )}
-          />
-        )}
+        {/* Video — always rendered, plays automatically when in view */}
+        <video
+          ref={videoRef}
+          src={src}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-        {/* Play button */}
+        {/* Play hint — dims once playing, brightens on hover (click = open with sound) */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
           initial={{ opacity: 0 }}
-          animate={{ opacity: hovered ? 1 : 0.7 }}
+          animate={{ opacity: hovered ? 1 : isPlaying ? 0 : 0.7 }}
           transition={{ duration: DURATION.fast }}
         >
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30 backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">

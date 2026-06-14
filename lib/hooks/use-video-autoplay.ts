@@ -11,10 +11,8 @@ export function useVideoAutoplay() {
     const video = ref.current
     if (!video || reduced) return
 
-    // Check for touch/mobile device
-    const isTouch = window.matchMedia('(pointer: coarse)').matches
-    if (isTouch) return
-
+    // Muted, inline videos are allowed to autoplay on mobile too, so we no
+    // longer bail out on touch devices — every in-view video plays.
     const playObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
